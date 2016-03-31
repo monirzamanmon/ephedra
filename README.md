@@ -4,6 +4,7 @@ About Ephedra
 Ephedra, also called Sea Grape, Joint Pine, Joint Fur, Mormon tea or
 Brigham tea is a shrub native to Asia, Europe, Africa and the Americas.
 
+![alt tag](https://drive.google.com/file/d/0B7_MV0e427VPZTBQR3pNeDZadGs/view?usp=sharing)
 ![](media/image1.jpeg){width="6.5in" height="6.320833333333334in"}
 
 Also, Ephedra is a lightweight PHP-based microframework, targeted to run
