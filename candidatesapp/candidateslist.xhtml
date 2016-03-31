@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file contains the raw view xhtml for the candidates page.
+For readability, this page is not still optimized for web.
+Ideally, before hosting, I would apply space and other optimizations over it.
+Thanks,
+Monir
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link href="../views/normal.css" title="normal" rel="stylesheet" type="text/css"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../img/ephedra.ico" />
+        <title>Candidates</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class="centeredheader">
+            Sample Candidates app developed using Ephedra.
+        </div>
+        <div class="centeredbody">
+            <p/>
+            <p/>
+		<form method=post id=candidateform name=candidateform action="../controllers/index.php?target=candidate&action=add">
+        <div>
+			<div id='table'>
+            <!--Content Placeholder -->
+			<div class='row'>
+				<span  class='cell'><input class='text' type='text' name='candidateName' id='candidateName'/></span>
+				<span  class='numericcell'><input class='text' type='text' name='testScore' id='testScore'/></span>
+				<span  class='numericcell'><input class='text' type='text' name='interviewScore' id='interviewScore'/></span>
+				<span  class='numericcell'><input class='text' type='text' name='experienceScore' id='experienceScore'/></span>
+				<span  class='numericcell'>&nbsp;</span>
+				<span  class='numericcell'>&nbsp;
+				<input type='button' onclick='javascript:clearCells()' class='button' name='clearButton' id='clearButton' value='Clear'/>
+				<input class='button' type='button' onclick='javascript:saveCandidate()' name='submitButton' id='submitButton' value='Save'/></span></div>
+			</div>
+        </div>
+					<input type=hidden name='values' id='values'/>
+					<input type=hidden name='id' id='id'/>
+		</form>
+        <div class="centeredbody">
+            <p/>
+            <p/>
+            Alternatively, you may want to <a href="../docs/index.html">view</a> the class documentation or <a href="../docs/readme.pdf">download</a> the manual. 
+            <p/>
+            Thank you for your time for evaluation! Please send any feedback to <a href='mailto:callmoni@gmail.com'>callmoni@gmail.com</a>
+            <p/>
+            <p/>
+        <div>
+		<script  type="text/javascript" src='../candidatesapp/candidate.js'></script>
+    </body>
+</html>

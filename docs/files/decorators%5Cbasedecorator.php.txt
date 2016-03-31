@@ -1,0 +1,152 @@
+<?php
+/**
+ * Basic Decorator Class File
+ * 
+ * This file contains the basic Abstract Decorator class
+ * @author Monir callmoni@gmail.com
+ * @version p.o.c
+ * 
+ */
+
+/**
+ * @ignore
+ */
+require_once '../exceptions/incorrectviewpathexception.php';
+
+const VIEW_PATH_NON_LITERAL_CODE = 1;
+const VIEW_PATH_UNREADABLE_CODE = 2;
+
+const VIEW_PATH_NON_LITERAL_MESSAGE = "View path should be a literal";
+const VIEW_PATH_UNREADABLE_MESSAGE = "View path is not a readable file";
+
+const DECORATED_CONTENT_PLACEHOLDER_LITERAL = "<!--Content Placeholder -->";
+
+
+/**
+ * Base Decorator Class
+ * 
+ * The BaseDecorator class implements the basic decoration activities for 
+ * all child decorators who can further customize the decoration of data with views. 
+ * @abstract
+ */
+abstract class BaseDecorator {
+   
+/**
+ * Holder for path to view artitfact
+ * 
+ * @var string
+ * @access protected
+ */
+    protected $viewPath;
+
+/**
+ * Holder for content loaded from view artitfact
+ * 
+ * @var string
+ * @access protected
+ */
+    protected $viewContent;
+    
+/**
+ * Holder for content retrieved from model, to decorate with view artitfact
+ * 
+ * @var string
+ * @access protected
+ */
+    protected $decorationContent;
+
+/**
+ * Allows children to define their own view path
+ * @abstract
+ * @access protected
+ */
+    protected abstract function defineViewPath();
+    
+/**
+ * Default Constructor for Base Decorator
+ * 
+ * The Base Decorator initializes the view and decoration content and then allows 
+ * the children classes to define their own view path.
+ * 
+ * @access public 
+ */
+    public function BaseDecorator() {
+        $this->viewContent = "";
+        $this->decorationContent = "";
+        $this->defineViewPath();
+    }
+
+/**
+ * Indirect accessor for view content
+ * 
+ * Before sending view content, it makes sure the transformation happened.
+ * @return string
+ * @access public 
+ */
+    public function getViewContent() {
+        $this->transformView();
+        return $this->viewContent;
+    }
+    
+/**
+ * Setter for Decoration Content
+ * 
+ * Typicall decoration content will be set by the handlers/controllers who will 
+ * receive this from models.
+ * 
+ * @param string $decorationContent The data content to decorate
+ * @return string
+ * @access public 
+ */
+    public function setDecorationContent($decorationContent) {
+        $this->decorationContent = $decorationContent;
+    }
+    
+/**
+ * Excecutive method for view transformation
+ * 
+ * Checks if the view is loaded or not, if not loaded, loads it. then applies the 
+ * necessary transformation through helper method and then puts in content placeholder.
+ * @access private 
+ */
+    private function transformView() {
+        if (strlen($this->viewContent) < 1) {
+            $this->loadView();
+        }
+        $this->applyTransformation();
+        $this->viewContent = str_replace(DECORATED_CONTENT_PLACEHOLDER_LITERAL,
+                                    $this->decorationContent, 
+                                    $this->viewContent);
+    }
+
+/**
+ * Helper method for view transformation
+ * 
+ * Typically implemented by child class of base decorator.
+ * @access protected
+ * @abstract
+ */
+    protected abstract function applyTransformation();
+   
+/**
+ * Loads the view artifact
+ * 
+ * Checks if the view is readable or not, if readable, loads it.
+ * @access private 
+ */
+    private function loadView() {
+        if (!is_string($this->viewPath)) {
+            $nonStringViewPath = new IncorrectViewPathException(VIEW_PATH_NON_LITERAL_MESSAGE, VIEW_PATH_NON_LITERAL_CODE);
+            $nonStringViewPath->pathUsed = $this->viewPath;
+            throw $nonStringViewPath;
+        }
+        if (is_readable($this->viewPath)) {
+            $this->viewContent = file_get_contents($this->viewPath);
+            return;
+        }
+        $unreadableViewPath = new IncorrectViewPathException(VIEW_PATH_UNREADABLE_MESSAGE, VIEW_PATH_UNREADABLE_CODE);
+        $unreadableViewPath->pathUsed = $this->viewPath;
+        throw $unreadableViewPath;
+    }
+}
+?>

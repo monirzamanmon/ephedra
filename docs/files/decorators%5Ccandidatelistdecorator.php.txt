@@ -1,0 +1,74 @@
+<?php
+/**
+ * Candidate List Decorator Class File
+ * 
+ * This file contains the CandidateListDecorator class
+ * @author Monir callmoni@gmail.com
+ * @version p.o.c
+ * 
+ */
+
+/**
+ * @ignore
+ */
+require_once "basedecorator.php";
+require_once '../models/candidate.php';
+
+const CANDIDATE_VIEW_PATH = "../views/candidateslist.xhtml";
+
+
+/**
+ * Candidate List Decorator Class
+ * 
+ * The CandidateListDecorator class implements the decoration of data for candidate list
+ */
+class CandidateListDecorator extends BaseDecorator {
+
+/**
+ * Defines the view for this decorator
+ * 
+ * This implements the abstract method defineViewPath of BaseDecorator.
+ * BaseDecorator calls this method so that all different decorators
+ * can define their own views' paths.
+ * @access protected
+ */
+    protected function defineViewPath() {
+        $this->viewPath = CANDIDATE_VIEW_PATH;
+    }
+
+/**
+ * Helper method for view transformation
+ * 
+ * Transforms the data from the model to be decorated with the Candidate list view.
+ * @access protected
+ */
+    protected function applyTransformation() {
+        if (is_array($this->decorationContent)) {
+            $newContent = "<div id='table'>\n";
+            $newContent .= "<div class='row'>\n";
+            $newContent .= "<span class='cell'>Name</span>";
+            $newContent .= "<span class='numericcell'>Test Score</span>";
+            $newContent .= "<span class='numericcell'>Interview Score</span>";
+            $newContent .= "<span class='numericcell'>Experience Score</span>";
+            $newContent .= "<span class='numericcell'>Total score<span>";
+            $newContent .= "</div>\n";
+            foreach ($this->decorationContent as $candidate) {
+                if ($candidate instanceof Candidate) {
+                    $newContent .= "<div class='row'>\n";
+                    $newContent .= "<span class='cell'>".$candidate->name."</span>";
+                    $newContent .= "<span class='numericcell'>".$candidate->testScore."</span>";
+                    $newContent .= "<span class='numericcell'>".$candidate->interviewScore."</span>";
+                    $newContent .= "<span class='numericcell'>".$candidate->experienceScore."</span>";
+                    $newContent .= "<span class='numericcell'>".$candidate->getTotalScore()."</span>";
+                    $newContent .= "</div>\n";
+                }
+            }
+            $newContent .= "</div>\n";
+            
+            $this->decorationContent = $newContent;
+        }
+    }
+
+}
+
+?>

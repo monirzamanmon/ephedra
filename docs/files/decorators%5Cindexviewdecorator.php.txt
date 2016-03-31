@@ -1,0 +1,52 @@
+<?php
+/**
+ * Index View Decorator Class File
+ * 
+ * This file contains the IndexViewDecorator class
+ * @author Monir callmoni@gmail.com
+ * @version p.o.c
+ * 
+ */
+
+/**
+ * @ignore
+ */
+require_once "basedecorator.php";
+
+const INDEX_VIEW_PATH = "../views/indexview.xhtml";
+
+
+/**
+ * Index View Decorator Class
+ * 
+ * The IndexViewDecorator class implements the decoration of data for Index View.
+ * Currently this is the default view, and it is kept as a sample of non-model attached 
+ * view case.
+ */
+class IndexViewDecorator extends BaseDecorator {
+
+/**
+ * Defines the view for this decorator
+ * 
+ * This implements the abstract method defineViewPath of BaseDecorator.
+ * BaseDecorator calls this method so that all different decorators
+ * can define their own views' paths.
+ * @access protected
+ */
+    protected function defineViewPath() {
+        $this->viewPath = INDEX_VIEW_PATH;
+    }
+
+/**
+ * Helper method for view transformation
+ * 
+ * Index view does not implement this, since no transformation is applicable for the default Index view.
+ * @access protected
+ */
+    protected function applyTransformation() {
+        // no transformation for index
+    }
+
+}
+
+?>

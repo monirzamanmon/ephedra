@@ -1,0 +1,17 @@
+<?php
+/**
+ * Internal Index Page in the controllers
+ * 
+ * Delegates the incoming request to Front Controller, and returns the response.
+ * @author Monir callmoni@gmail.com
+ * @version p.o.c
+ * 
+ */
+
+/**
+ * @ignore
+ */
+require_once 'frontcontroller.php';
+$controller = new FrontController();
+echo $controller->processRequest();
+?>

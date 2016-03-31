@@ -1,0 +1,49 @@
+<?php
+/**
+ * Candidate Model Class File
+ * 
+ * This file contains the CandidateModel class
+ * @author Monir callmoni@gmail.com
+ * @version p.o.c
+ * 
+ */
+
+/**
+ * @ignore
+ */
+require_once 'memorymodel.php';
+require_once 'candidate.php';
+
+/**
+ * Candidate Model Class
+ * 
+ * The CandidateModel class implements memory model for candidate list
+ */
+class CandidateModel extends MemoryModel {
+/**
+ * Default Constructor for Candiadate Model
+ * 
+ * The constructor of CandidateModel initializes candidate properties.
+ * @access public 
+ */
+    public function CandidateModel () {
+        parent::__construct();
+        $monir = new Candidate();
+        $monir->name = "Monir Noob";
+        $this->add($monir);
+        $phdCandidate = new Candidate();
+        $phdCandidate->name = "Superb Candidate";
+        $phdCandidate->testScore = 100;
+        $phdCandidate->interviewScore = 100;
+        $phdCandidate->experienceScore = 50;
+        $this->add($phdCandidate);
+        
+        $talentedCandidate = new Candidate();
+        $talentedCandidate->name = "Talented Candidate";
+        $talentedCandidate->testScore = 100;
+        $talentedCandidate->experienceScore = 80;
+        $talentedCandidate->interviewScore = 100;
+        $this->add($talentedCandidate);
+    }
+}
+?>

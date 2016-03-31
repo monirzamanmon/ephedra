@@ -1,0 +1,63 @@
+/*
+    Created on : 13 Dec 2014, 2:56:37 PM
+    Author     : Monir
+*/
+
+.centeredheader {
+    font-size: larger;
+    font-style: initial;
+    text-align: center;
+}
+.centeredbody {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 75%;
+}
+
+#table {display: table;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    background-color: #EEEEEE;
+    font-size: small;
+}
+.row {display: table-row;
+background-color: #EEEEEE;
+}
+.cell 
+{display: table-cell;
+width: 12%;
+padding: 1%;
+background-color: #ddddff;
+}
+.headernumericcell 
+{display: table-cell;
+width: 10%;
+padding: 1%;
+text-align: center;
+background-color: #ddddff;
+}
+.numericcell 
+{display: table-cell;
+width: 10%;
+padding: 1%;
+text-align: center;
+background-color: #FFFFFF;
+}
+.button 
+{
+ display: inline-block;
+ font-size: xx-small;
+ width: 30%;
+ align: left;
+ text-align: center;
+}
+.text 
+{
+ display: inline-block;
+ font-size: small;
+ width: 90%;
+ align: center;
+ text-align: center;
+}
