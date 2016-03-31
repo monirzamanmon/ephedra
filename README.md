@@ -4,7 +4,6 @@ About Ephedra
 Ephedra, also called Sea Grape, Joint Pine, Joint Fur, Mormon tea or
 Brigham tea is a shrub native to Asia, Europe, Africa and the Americas.
 
-![](media/image1.jpeg){width="6.5in" height="6.320833333333334in"}
 
 Also, Ephedra is a lightweight PHP-based microframework, targeted to run
 in embedded devices and to be rendered in microbrowsers. Ephedra has a
@@ -18,12 +17,8 @@ Architecture
 
 Ephedra is a combination of MVC and Decorator design patterns. It runs
 on PHP version &gt; 5.3.3 and depends on Redbean for data access layer.
-It ships with a candidate sample application. The following component
-diagram may give a glimpse of interaction between the components of the
-application:
+It ships with a candidate sample application. 
 
-![](media/image2.jpeg){width="6.493055555555555in"
-height="6.894444444444445in"}
 
 The components are layered into following namespaces:
 
@@ -54,11 +49,8 @@ index in the controllers. The index transfers the request to
 FrontController, which then processes the request in a chain of
 responsibility, and returns that response to be echoed by the Index.
 
-![](media/image3.jpeg){width="6.4944444444444445in"
-height="3.0708333333333333in"}
 
-As we see in the above sequence diagram for the single hypothetical use
-case Candidate Listing, after the FrontController receives request, it
+After the FrontController receives request, it
 finds the Action Handler responsible for dispatching this action. The
 CandidateListHandler knows its mode and its decorator. So it first
 fetches the data from the Model with the listAll call, and then it sends
@@ -71,8 +63,6 @@ Directory structure
 
 The code have the following directory structure:
 
-![](media/image4.jpeg){width="3.0729166666666665in"
-height="5.072916666666667in"}
 
 > Root folder
 
@@ -122,21 +112,6 @@ viii. Views
 
     3.  normal.css
 
-Navigating
-----------
-
-When invoked, the index.php looks like the following:
-
-![](media/image5.jpeg){width="6.5in" height="2.2895833333333333in"}
-
-You can go to see the sample use case of listing candidates from there,
-or you can view the documentations, as shown above.
-
-The candidate listing page may look like the following:
-
-![](media/image6.jpeg){width="6.5in" height="2.0569444444444445in"}
-
-You can go to the documentation space from any of the pages.
 
 Questions or issues
 -------------------
